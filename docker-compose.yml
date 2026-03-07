@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nativephp-app
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - "8000:8000"
+    networks:
+      nativephp-network:
+        ipv4_address: 21.21.0.10
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    depends_on:
+      - db
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  db:
+    image: mysql:8.0
+    container_name: nativephp-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: password
+      MYSQL_USER: laravel
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      nativephp-network:
+        ipv4_address: 21.21.0.11
+
+networks:
+  nativephp-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 21.21.0.0/16
+          gateway: 21.21.0.1
+
+volumes:
+  db_data:
+    driver: local
+
