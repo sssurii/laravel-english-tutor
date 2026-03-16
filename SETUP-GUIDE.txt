@@ -1,0 +1,163 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                   NativePHP + Laravel Docker Setup                            ║
+║                          Ready to Use! 🚀                                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📁 PROJECT STRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+english-tutor/
+├── 📘 README.md               👈 Read this first!
+├── 📗 QUICKSTART.md              Quick start guide
+├── 📙 NATIVEPHP-CONFIG.md        NativePHP configuration examples
+│
+├── 🔧 setup.sh                👈 Run this to setup everything!
+├── 🔧 dev.sh                     Development helper script
+├── 🔧 manual-setup.sh            Step-by-step setup
+├── 🔧 Makefile                   Make commands
+│
+├── 🐳 docker-compose.yml         Docker services configuration
+├── 🐳 Dockerfile                 PHP + Laravel image
+├── 🐳 .dockerignore              Docker ignore file
+├── 📂 docker/                    Docker configs
+│   └── php/
+│       └── php.ini               PHP settings
+│
+├── 📂 src/                    👈 Your Laravel app goes here (after setup)
+└── 🚫 .gitignore                 Git ignore file
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 QUICK START (Choose One)
+═══════════════════════════════════════════════════════════════════════════════
+
+1️⃣  Automated Setup (Recommended)
+    $ ./setup.sh
+
+2️⃣  Using Make
+    $ make setup
+
+3️⃣  Using Dev Script
+    $ ./dev.sh start
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 WHAT WILL BE INSTALLED
+═══════════════════════════════════════════════════════════════════════════════
+✅ Laravel (latest version)
+✅ NativePHP (nativephp/laravel + nativephp/mobile)
+✅ PHP 8.2 with all extensions
+✅ MySQL 8.0 database
+✅ Composer
+✅ Node.js & NPM
+✅ Docker containers (app + database)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎮 MOST COMMON COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+./dev.sh start                    Start containers
+./dev.sh stop                     Stop containers
+./dev.sh logs                     View logs
+./dev.sh shell                    Access container shell
+./dev.sh artisan [command]        Run artisan commands
+./dev.sh composer [command]       Run composer commands
+./dev.sh native serve             Run NativePHP mobile app
+./dev.sh migrate                  Run database migrations
+./dev.sh fix-permissions          Fix permissions
+./dev.sh clear-cache              Clear all caches
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🌐 ACCESS URLS
+═══════════════════════════════════════════════════════════════════════════════
+Web App:      http://localhost:8000
+Database:     localhost:3306
+  - DB Name:  laravel
+  - User:     laravel
+  - Password: password
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔄 TYPICAL WORKFLOW
+═══════════════════════════════════════════════════════════════════════════════
+1. Run setup:                     ./setup.sh
+2. Wait for installation...       (5-10 minutes)
+3. Access your app:               http://localhost:8000
+4. Start developing:              Edit files in src/
+5. Create controllers:            ./dev.sh artisan make:controller MyController
+6. Create models:                 ./dev.sh artisan make:model MyModel -m
+7. Run migrations:                ./dev.sh migrate
+8. Test NativePHP:                ./dev.sh native serve
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎓 BUILDING YOUR ENGLISH TUTOR APP
+═══════════════════════════════════════════════════════════════════════════════
+Some ideas to get started:
+
+1. Create models:
+   ./dev.sh artisan make:model Lesson -m
+   ./dev.sh artisan make:model Word -m
+   ./dev.sh artisan make:model Quiz -m
+
+2. Create controllers:
+   ./dev.sh artisan make:controller LessonController --resource
+   ./dev.sh artisan make:controller WordController --resource
+
+3. Install UI framework (optional):
+   ./dev.sh composer require laravel/breeze --dev
+   ./dev.sh artisan breeze:install
+
+4. Configure NativePHP window (see NATIVEPHP-CONFIG.md)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🆘 TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+Problem: Containers won't start
+Solution: ./dev.sh stop && ./dev.sh start && ./dev.sh logs
+
+Problem: Permission errors
+Solution: ./dev.sh fix-permissions
+
+Problem: Database connection failed
+Solution: Check that DB_HOST=db in src/.env file
+
+Problem: Something is broken
+Solution: make clean && make setup  (complete reset)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📚 DOCUMENTATION FILES
+═══════════════════════════════════════════════════════════════════════════════
+README.md              👈 Complete guide (start here!)
+QUICKSTART.md            Fast setup instructions
+NATIVEPHP-CONFIG.md      NativePHP examples and config
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💡 TIPS
+═══════════════════════════════════════════════════════════════════════════════
+• Keep containers running while developing
+• All your code goes in the src/ directory
+• Changes to files are automatically reflected
+• Use ./dev.sh for quick commands
+• Use make for standardized tasks
+• Don't commit src/vendor or src/node_modules
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎉 READY TO START!
+═══════════════════════════════════════════════════════════════════════════════
+
+Run this command to begin:
+
+    ./setup.sh
+
+Then access your app at:
+
+    http://localhost:8000
+
+Happy coding! 🚀
+
+═══════════════════════════════════════════════════════════════════════════════
