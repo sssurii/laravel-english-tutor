@@ -1,6 +1,6 @@
 # 🚀 English Tutor - NativePHP + Laravel App
 
-**Dockerized English learning desktop application built with NativePHP and Laravel 12.**
+**Dockerized English learning application built with NativePHP Mobile and Laravel 12.**
 
 ✅ Setup Complete | Laravel 12 | NativePHP 1.3 | PHP 8.4 | MySQL 8.0 | Docker Compose v2
 
@@ -8,12 +8,10 @@
 
 ## 📖 Documentation Guide
 
-- **[START-HERE.md](START-HERE.md)** 👈 **Read this first!** Complete getting started guide
-- **[QUICKSTART.md](QUICKSTART.md)** - Fast-track setup instructions
-- **[CHECKLIST.md](CHECKLIST.md)** - Setup progress checklist
+- **README.md** 👈 **Primary guide** (this file)
+- **[QUICKSTART.md](QUICKSTART.md)** - Manual/step-by-step setup
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
-- **[NATIVEPHP-CONFIG.md](NATIVEPHP-CONFIG.md)** - NativePHP configuration examples
-- **[SETUP-GUIDE.txt](SETUP-GUIDE.txt)** - Visual reference guide
+- **[NATIVEPHP-CONFIG.md](NATIVEPHP-CONFIG.md)** - NativePHP Mobile configuration
 
 ---
 
@@ -37,7 +35,7 @@ That's it! Your NativePHP + Laravel app is ready to use.
 
 - ✅ **PHP 8.2** with all necessary extensions
 - ✅ **Laravel** (latest version)
-- ✅ **NativePHP** (nativephp/laravel + nativephp/electron)
+- ✅ **NativePHP** (nativephp/laravel + nativephp/mobile)
 - ✅ **MySQL 8.0** database
 - ✅ **Composer** for dependency management
 - ✅ **Node.js & NPM** for frontend assets
@@ -180,19 +178,19 @@ make setup
 
 ---
 
-## 🖥️ NativePHP Desktop App
+## 📱 NativePHP Mobile App
 
 ### Development Mode
 ```bash
 ./dev.sh native serve
 ```
 
-### Build Desktop App
+### Build Mobile App
 ```bash
 ./dev.sh native build
 ```
 
-**Note:** For production desktop builds, you may need Electron installed on your host machine.
+**Note:** For production mobile builds, set up platform toolchains on your host machine (Android Studio for Android and Xcode for iOS on macOS).
 
 See [NATIVEPHP-CONFIG.md](NATIVEPHP-CONFIG.md) for configuration examples.
 
@@ -235,7 +233,7 @@ See [NATIVEPHP-CONFIG.md](NATIVEPHP-CONFIG.md) for configuration examples.
 - [Laravel Documentation](https://laravel.com/docs)
 - [NativePHP Documentation](https://nativephp.com/docs)
 - [Docker Documentation](https://docs.docker.com/)
-- [Electron Documentation](https://www.electronjs.org/docs)
+- [NativePHP Mobile Documentation](https://nativephp.com/docs/mobile/2)
 
 ---
 
@@ -285,8 +283,8 @@ Get started with your app:
 
 1. ✅ Run `./setup.sh` to install everything
 2. ✅ Access http://localhost:8000 to verify
-3. ✅ Read [START-HERE.md](START-HERE.md) for detailed guide
-4. ✅ Start building your English Tutor features!
+3. ✅ Review [NATIVEPHP-CONFIG.md](NATIVEPHP-CONFIG.md) for mobile setup
+4. ✅ Start building your English Tutor features
 
 ---
 
@@ -306,4 +304,3 @@ Happy coding! 🚀
 ---
 
 **Questions?** Check the documentation files or troubleshooting guide.
-

@@ -1,0 +1,175 @@
+openapi: 3.1.0
+info:
+  title: English Tutor API
+  version: 1.0.0-mvp
+  description: MVP API contract for Android (Jump-based) client integration.
+servers:
+  - url: http://localhost:8000
+    description: Local Docker host mapping
+  - url: http://10.0.2.2:8000
+    description: Android emulator access (if used later)
+  - url: http://{lan_ip}:8000
+    description: Physical Android device on same LAN (Jump flow)
+    variables:
+      lan_ip:
+        default: 192.168.1.10
+
+tags:
+  - name: Auth
+  - name: Sessions
+  - name: Chat
+  - name: Progress
+
+paths:
+  /api/v1/register:
+    post:
+      tags: [Auth]
+      summary: Register a user and issue API token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password, password_confirmation]
+              properties:
+                name: { type: string, maxLength: 255 }
+                email: { type: string, format: email }
+                password: { type: string, minLength: 8 }
+                password_confirmation: { type: string, minLength: 8 }
+      responses:
+        '201':
+          description: Registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSuccess'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /api/v1/login:
+    post:
+      tags: [Auth]
+      summary: Login and issue API token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string }
+      responses:
+        '200':
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSuccess'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /api/v1/logout:
+    post:
+      tags: [Auth]
+      summary: Logout current token
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      logged_out: { type: boolean, example: true }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/sessions/start:
+    post:
+      tags: [Sessions]
+      summary: Start session (planned MVP)
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Session started
+
+  /api/v1/chat/message:
+    post:
+      tags: [Chat]
+      summary: Submit user message (hybrid delivery, planned MVP)
+      security:
+        - bearerAuth: []
+      responses:
+        '202':
+          description: Accepted with pending AI response
+
+  /api/v1/progress/summary:
+    get:
+      tags: [Progress]
+      summary: User progress summary (planned MVP)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Progress summary
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+
+  responses:
+    ValidationError:
+      description: Validation failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message: { type: string }
+              errors:
+                type: object
+                additionalProperties:
+                  type: array
+                  items: { type: string }
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Unauthenticated.
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id: { type: integer, example: 1 }
+        name: { type: string, example: Raj User }
+        email: { type: string, format: email, example: raj.user@example.com }
+
+    AuthSuccess:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+            token:
+              type: string
+              example: 1|long-plain-text-token

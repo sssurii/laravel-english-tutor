@@ -2,21 +2,17 @@
 
 namespace App\Providers;
 
-use Native\Laravel\Facades\Window;
-use Illuminate\Support\ServiceProvider;
+use Native\Laravel\Contracts\ProvidesPhpIni;
 
-class NativeAppServiceProvider extends ServiceProvider
+class NativeAppServiceProvider implements ProvidesPhpIni
 {
     public function boot(): void
     {
-        Window::open()
-            ->title('English Tutor')
-            ->width(1200)
-            ->height(800)
-            ->minWidth(800)
-            ->minHeight(600)
-            ->resizable()
-            ->url('/');
+        // Native app lifecycle hook. Keep empty until mobile-specific setup is added.
+    }
+
+    public function phpIni(): array
+    {
+        return [];
     }
 }
-
