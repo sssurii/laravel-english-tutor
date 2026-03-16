@@ -1,0 +1,3 @@
+[mcp_servers.laravel-boost]
+command = "docker"
+args = ["compose", "--project-directory", "/home/fnl/dev/english-tutor", "exec", "-T", "app", "php", "artisan", "boost:mcp"]
